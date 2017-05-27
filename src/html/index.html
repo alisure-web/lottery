@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Demo</title>
+    <link href="../css/jquery.mCustomScrollbar.min.css" rel="stylesheet">
+    <link href="../css/animate.min.css" rel="stylesheet">
+</head>
+<body>
+
+<style>
+    body{
+        margin: 0;
+        background-color: #f1f0ee;
+    }
+    .lottery{
+        width: 100%;
+    }
+    .lottery .wrapper{
+        width: 83.333%;
+        min-width: 1080px;
+        height: 800px;
+        margin: 50px auto 0;
+        padding: 20px;
+        box-shadow: 1px 1px 2px 2px #d3d3d3;
+        background-color: #fff;
+
+        /*整体布局1*/
+        display: flex;
+        flex-wrap: nowrap;
+    }
+</style>
+
+<style>
+    /* ------------------------------------------------------- */
+    .lottery .left{
+        width: 500px;
+        
+        background: url("../img/bg.png") no-repeat;
+        background-size: 100% 100%;
+
+        /*左边布局2*/
+        display: flex;
+        flex-wrap: nowrap;
+        flex-direction: column;
+    }
+    .lottery .left .title{
+        text-align: center;
+        font-size: 32px;
+        line-height: 90px;
+        color: #EA853C;
+
+        /*响应左边布局2*/
+        flex: 0 0;/*不放大也不收缩*/
+    }
+    .lottery .left .content{
+        /*左边中间的抽奖布局3*/
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+
+        /*响应左边布局2*/
+        flex: 1 1;/*放大也收缩*/
+    }
+    .lottery .left .content .item{
+        width: 170px;
+        height: 220px;
+        border-radius: 20px;
+    }
+    .lottery .left .content .item img{
+        width: 90%;
+        margin: 5% 5%;
+    }
+    .lottery .left .content .item p{
+        margin: 0px;
+        padding: 5px;
+        text-align: center;
+        font-size: 26px;
+        line-height: 30px;
+        color: #EA853C;
+    }
+    .lottery .left .set{
+        min-height: 200px;
+
+        /*左边底部的设置布局4*/
+        display: flex;
+        flex-direction: row;
+    }
+    .lottery .left .set .setting{
+        width: 65%;
+    }
+    .lottery .left .set .begin{
+        width: 35%;
+    }
+    .lottery .left .set .item{
+        padding: 5px 2px;
+        font-size: 14px;
+        overflow: hidden;
+    }
+    .lottery .left .set .item>label{
+        width: 30%;
+        text-align: right;
+        padding-right: 3%;
+        margin-top: 2px;
+        display: block;
+        float: left;
+    }
+
+    /*奖项名称*/
+    .lottery .left .set .select{
+        width: 64.5%;
+        height: 24px;
+        padding: 2px;
+        outline: none;
+        border-radius: 2px;
+        border: 1px solid #ffffff;
+        cursor: pointer;
+    }
+    /*奖项名称*/
+
+    /*其他类型*/
+    .lottery .left .set .input{
+        width: 60%;
+        height: 18px;
+        float: left;
+        padding: 2px 6px;
+        outline: none;
+        border-radius: 2px;
+        border: 1px solid #ffffff;
+    }
+    /*其他类型*/
+
+    /*抽奖范围*/
+    .lottery .left .set .item .range{
+        width: 60%;
+        float: left;
+    }
+    .lottery .left .set .item .range>div{
+        margin: 2px 0px;
+        font-size: 14px;
+        overflow: hidden;
+    }
+    .lottery .left .set .item .range input{
+        float: left;
+        width: 16px;
+        height: 16px;
+    }
+    .lottery .left .set .item .range label{
+        margin: 1px 1px;
+        float: left;
+    }
+    /*抽奖范围*/
+
+    /*开始和结束按钮*/
+    .lottery .left .set .begin{
+        display: flex;
+        min-height: 200px;
+        flex-direction: column;
+        align-items: center;
+    }
+    .lottery .left .set .begin input{
+        width: 100px;
+        height:100px;
+        margin-top: 30px;
+        border-radius: 100px;
+        outline: none;
+        font-size: 28px;
+        color: #ffffff;
+        border: 1px solid #EA853C;
+        background-color: #EA853C;
+        cursor: pointer;
+    }
+    .lottery .left .set .begin input:hover{
+        border: 1px solid #ea7125;
+        background-color: #ea7125;
+    }
+    .lottery .left .set .begin input:active{
+        border: 1px solid #ea6519;
+        background-color: #ea6519;
+    }
+    /*开始和结束按钮*/
+    /*动画时间设定： 覆盖animate.css*/
+    .animated {
+        animation-duration: 0.06s !important;
+    }
+    /*动画时间设定： 覆盖animate.css*/
+    /* ----------------------------------------------------- */
+
+</style>
+
+<style>
+    /* ----------------------------------------------------- */
+    .lottery .right{
+        flex: 1 1;
+        background-color: #ffffff;
+    }
+    .lottery .right .title{
+        min-height: 100px;
+        height: 100px;
+        background-color: #ffffff;
+
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+    }
+    .lottery .right .title .logo{
+        margin: 10px;
+        flex: 0 0;
+    }
+    .lottery .right .title .logo img{
+        width: 80px;
+        height: 80px;
+    }
+    .lottery .right .title .activity-info{
+        margin: 10px 5px;
+        flex: 1 1;
+    }
+    .lottery .right .title .activity-info .name{
+        font-size: 28px;
+        color: #EA853C;
+    }
+    .lottery .right .title .activity-info .time{
+        font-size: 15px;
+        color: #EA853C;
+        margin-top: 20px;
+    }
+    .lottery .right .title .right-info{
+        width: 100px;
+        margin: 15px 5px 15px 5px;
+    }
+    .lottery .right .title .right-info .operation{
+        width: 100px;
+        height: 37px;
+    }
+    .lottery .right .title .right-info .signed-number{
+        font-size: 15px;
+        color: #EA853C;
+        margin-top: 15px;
+    }
+
+    .lottery .right .list{
+        height: 690px;
+    }
+    .lottery .right .items{
+        margin: 5px;
+    }
+    .lottery .right .items .info{
+        background-color: #dddddd;
+        padding: 4px 10px;
+        border-radius: 5px;
+        overflow: hidden;
+    }
+    .lottery .right .items .info>div{
+        float: left;
+        font-size: 15px;
+        line-height: 30px;
+        text-align: end;
+    }
+    .lottery .right .items .info .lotteryName{
+        color: #EA853C;
+        font-size: 20px;
+        margin: auto 10px auto 5px;
+    }
+    .lottery .right .items .info .prizeName{
+        color: #999999;
+        margin: auto 10px;
+    }
+    .lottery .right .items .info .peopleNum{
+        color: #999999;
+        margin: auto 10px;
+    }
+    .lottery .right .items .info .reset{
+        color: #ffffff;
+        float: right;
+        font-size: 14px;
+        padding: 0px 8px;
+        border-radius: 4px;
+        background-color: #EA853C;
+    }
+    .lottery .right .items .info .reset:hover{
+        cursor: pointer;
+        background-color: #ea7125;
+    }
+    .lottery .right .items .info .reset:active{
+        cursor: pointer;
+        background-color: #ea6519;
+    }
+
+    .lottery .right .items .content{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        padding-bottom: 5px;
+    }
+    .lottery .right .items .content .item{
+        width: 80px;
+        height: 103px;
+        border-radius: 5px;
+        margin: 5px;
+    }
+    .lottery .right .items .content .item img{
+        width: 90%;
+        margin: 5% 5% 0%;
+    }
+    .lottery .right .items .content .item p{
+        margin: 0px;
+        padding: 2px;
+        text-align: center;
+        font-size: 14px;
+        color: #999999;
+    }
+    .lottery .right .items .delete{
+        position: absolute;
+        margin-left: 64px;
+        margin-top: -2px;
+        width: 20px;
+        height: 20px;
+        background: url("../img/delete.png") no-repeat;
+        background-size: 100% 100%;
+        cursor: pointer;
+    }
+
+    /* 重写滚动条样式*/
+    .mCSB_inside>.mCSB_container {
+        margin-right: 10px !important;
+    }
+    .mCS-dark-2.mCSB_scrollTools .mCSB_dragger.mCSB_dragger_onDrag .mCSB_dragger_bar,
+    .mCS-dark-2.mCSB_scrollTools .mCSB_dragger:active .mCSB_dragger_bar {
+        background-color: #EA853C;
+    }
+    .mCS-dark-2.mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar {
+        background-color: #EA853C;
+    }
+    /* 重写滚动条样式*/
+    /* ----------------------------------------------------- */
+</style>
+
+<div id="lottery" class="lottery">
+    <div class="wrapper">
+        <!-- 左侧抽奖 -->
+        <div class="left">
+            <div class="title"><span>抽奖</span></div>
+            <div class="content" id="leftContent"></div>
+            <div class="set">
+                <div class="setting">
+                    <div class="item">
+                        <label>奖项名称</label>
+                        <select id="select-name-select" class="select">
+                            <option value="自定义">自定义</option>
+                            <option value="一等奖">一等奖</option>
+                            <option value="二等奖">二等奖</option>
+                            <option value="三等奖" selected="selected">三等奖</option>
+                        </select>
+                    </div>
+                    <div class="item" id="self-def-name" style="display:none;">
+                        <label>自定义名称</label>
+                        <input id="self-def-name-input" class="input" type="text" placeholder="请输入自定义奖项名称">
+                    </div>
+                    <div class="item">
+                        <label>抽奖数量</label>
+                        <input id="number-input" class="input" type="number" min="1" placeholder="请输入本次抽奖数量">
+                    </div>
+                    <div class="item">
+                        <label>奖品</label>
+                        <input id="prize-input" class="input" type="text" placeholder="请输入奖品(可不填)">
+                    </div>
+                    <div class="item">
+                        <label>抽奖范围</label>
+                        <div class="range">
+                            <div>
+                                <input id="prize-range-input-1" class="checkbox" type="checkbox" value="1"><label for="prize-range-input-1">包括名单外的签到人员</label>
+                            </div>
+                            <div>
+                                <input id="prize-range-input-2" class="checkbox" checked="checked" type="checkbox" value="2"><label for="prize-range-input-2">已中奖人员再次参与</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="begin">
+                    <input id="begin" type="button" value="抽奖">
+                    <input id="end" style="display: none" type="button" value="停止">
+                </div>
+            </div>
+        </div>
+        <!-- 右侧名单 -->
+        <div class="right">
+            <div class="title">
+                <div class="logo">
+                    <img src="../img/user_head_img_3.png">
+                </div>
+                <div class="activity-info">
+                    <div class="name">活动名称</div>
+                    <div class="time">2017年05月27日 15：39</div>
+                </div>
+                <div class="right-info">
+                    <div class="operation"></div>
+                    <div class="signed-number">已签到<span>999</span>人</div>
+                </div>
+            </div>
+            <div class="list" id="list">
+
+                <div class="items">
+                    <div class="info">
+                        <div class="lotteryName">三等奖</div>
+                        <div class="prizeName">水杯</div>
+                        <div class="peopleNum">共<span>8</span>人获奖</div>
+                        <div class="reset">重新抽奖</div>
+                    </div>
+                    <div class="content">
+                        <div class="item">
+                            <img src="../img/user_head_img_1.png">
+                            <p>ALISURE</p>
+                        </div>
+                        <div class="item">
+                            <img src="../img/user_head_img_2.png">
+                            <p>ALISURE</p>
+                        </div>
+                        <div class="item">
+                            <img src="../img/user_head_img_3.png">
+                            <p>ALISURE</p>
+                        </div>
+                        <div class="item">
+                            <img src="../img/user_head_img_4.png">
+                            <p>ALISURE</p>
+                        </div>
+                        <div class="item">
+                            <img src="../img/user_head_img_1.png">
+                            <p>ALISURE</p>
+                        </div>
+                        <div class="item">
+                            <img src="../img/user_head_img_2.png">
+                            <p>ALISURE</p>
+                        </div>
+                        <div class="item">
+                            <img src="../img/user_head_img_3.png">
+                            <p>ALISURE</p>
+                        </div>
+                        <div class="item">
+                            <img src="../img/user_head_img_4.png">
+                            <p>ALISURE</p>
+                        </div>
+                        <div class="item">
+                            <img src="../img/user_head_img_1.png">
+                            <p>ALISURE</p>
+                        </div>
+                        <div class="item">
+                            <img src="../img/user_head_img_2.png">
+                            <p>ALISURE</p>
+                        </div>
+                        <div class="item">
+                            <img src="../img/user_head_img_3.png">
+                            <p>ALISURE</p>
+                        </div>
+                        <div class="item">
+                            <img src="../img/user_head_img_4.png">
+                            <p>ALISURE</p>
+                        </div>
+                        <div class="item">
+                            <img src="../img/user_head_img_1.png">
+                            <p>ALISURE</p>
+                        </div>
+                        <div class="item">
+                            <img src="../img/user_head_img_2.png">
+                            <p>ALISURE</p>
+                        </div>
+                        <div class="item">
+                            <img src="../img/user_head_img_3.png">
+                            <p>ALISURE</p>
+                        </div>
+                        <div class="item">
+                            <img src="../img/user_head_img_4.png">
+                            <p>ALISURE</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="items">
+                    <div class="info">
+                        <div class="lotteryName">三等奖</div>
+                        <div class="prizeName">水杯</div>
+                        <div class="peopleNum">共<span>8</span>人获奖</div>
+                        <div class="reset">重新抽奖</div>
+                    </div>
+                    <div class="content">
+                        <div class="item">
+                            <img src="../img/user_head_img_1.png">
+                            <p>ALISURE</p>
+                        </div>
+                        <div class="item">
+                            <img src="../img/user_head_img_2.png">
+                            <p>ALISURE</p>
+                        </div>
+                        <div class="item">
+                            <img src="../img/user_head_img_3.png">
+                            <p>ALISURE</p>
+                        </div>
+                        <div class="item">
+                            <img src="../img/user_head_img_4.png">
+                            <p>ALISURE</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="items">
+                    <div class="info">
+                        <div class="lotteryName">三等奖</div>
+                        <div class="prizeName">水杯</div>
+                        <div class="peopleNum">共<span>8</span>人获奖</div>
+                        <div class="reset">重新抽奖</div>
+                    </div>
+                    <div class="content">
+                        <div class="item">
+                            <img src="../img/user_head_img_1.png">
+                            <p>ALISURE</p>
+                        </div>
+                        <div class="item">
+                            <img src="../img/user_head_img_2.png">
+                            <p>ALISURE</p>
+                        </div>
+                        <div class="item">
+                            <img src="../img/user_head_img_3.png">
+                            <p>ALISURE</p>
+                        </div>
+                        <div class="item">
+                            <img src="../img/user_head_img_4.png">
+                            <p>ALISURE</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="items">
+                    <div class="info">
+                        <div class="lotteryName">三等奖</div>
+                        <div class="prizeName">水杯</div>
+                        <div class="peopleNum">共<span>8</span>人获奖</div>
+                        <div class="reset">重新抽奖</div>
+                    </div>
+                    <div class="content">
+                        <div class="item">
+                            <img src="../img/user_head_img_1.png">
+                            <p>ALISURE</p>
+                        </div>
+                        <div class="item">
+                            <img src="../img/user_head_img_2.png">
+                            <p>ALISURE</p>
+                        </div>
+                        <div class="item">
+                            <img src="../img/user_head_img_3.png">
+                            <p>ALISURE</p>
+                        </div>
+                        <div class="item">
+                            <img src="../img/user_head_img_4.png">
+                            <p>ALISURE</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="items">
+                    <div class="info">
+                        <div class="lotteryName">三等奖</div>
+                        <div class="prizeName">水杯</div>
+                        <div class="peopleNum">共<span>8</span>人获奖</div>
+                        <div class="reset">重新抽奖</div>
+                    </div>
+                    <div class="content">
+                        <div class="item">
+                            <img src="../img/user_head_img_1.png">
+                            <p>ALISURE</p>
+                        </div>
+                        <div class="item">
+                            <img src="../img/user_head_img_2.png">
+                            <p>ALISURE</p>
+                        </div>
+                        <div class="item">
+                            <img src="../img/user_head_img_3.png">
+                            <p>ALISURE</p>
+                        </div>
+                        <div class="item">
+                            <img src="../img/user_head_img_4.png">
+                            <p>ALISURE</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- 把所有的名单放到这里，需要显示哪个时就显示哪个！ -->
+        <div id="data" style="display: none"></div>
+    </div>
+</div>
+
+<script src="../js/jquery-1.11.3.min.js"></script>
+<script src="../js/jquery.mousewheel.js"></script>
+<script src="../js/jquery.mCustomScrollbar.concat.min.js"></script>
+<script>
+    /* jQuery插件 */
+    $.fn.extend({
+        animateCss: function (animationName, callback) {
+            var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
+            this.addClass('animated ' + animationName).one(animationEnd, function() {
+                $(this).removeClass('animated ' + animationName);
+                callback();
+            });
+        }
+    });
+    $(function () {
+
+        var init_params = {
+            peopleSum: 22,
+            isStop: false
+        };
+
+        /*初始化数据*/
+        init_data();
+
+        /*初始化表单*/
+        init_form();
+
+        /*初始化数据*/
+        function init_data() {
+            var all_user_list = [
+                {
+                    id: 1,
+                    nickname: "ALISURE",
+                    headimgurl:"../img/user_head_img_1.png"
+                },
+                {
+                    id: 2,
+                    nickname: "ALISURE2",
+                    headimgurl:"../img/user_head_img_2.png"
+                },
+                {
+                    id: 3,
+                    nickname: "ALISURE3",
+                    headimgurl:"../img/user_head_img_3.png"
+                },
+                {
+                    id: 4,
+                    nickname: "ALISURE4",
+                    headimgurl:"../img/user_head_img_4.png"
+                },
+                {
+                    id: 5,
+                    nickname: "ALISURE5",
+                    headimgurl:"../img/user_head_img_5.png"
+                },
+                {
+                    id: 6,
+                    nickname: "ALISURE6",
+                    headimgurl:"../img/user_head_img_6.png"
+                },
+                {
+                    id: 7,
+                    nickname: "ALISURE7",
+                    headimgurl:"../img/user_head_img_7.png"
+                },
+                {
+                    id: 8,
+                    nickname: "ALISURE8",
+                    headimgurl:"../img/user_head_img_8.png"
+                },
+                {
+                    id: 9,
+                    nickname: "ALISURE9",
+                    headimgurl:"../img/user_head_img_9.png"
+                },
+                {
+                    id: 10,
+                    nickname: "ALISURE10",
+                    headimgurl:"../img/user_head_img_10.png"
+                },
+                {
+                    id: 11,
+                    nickname: "ALISURE11",
+                    headimgurl:"../img/user_head_img_11.png"
+                },
+                {
+                    id: 12,
+                    nickname: "ALISURE12",
+                    headimgurl:"../img/user_head_img_12.png"
+                }
+            ];
+
+            var html = "";
+            for(var user in all_user_list){
+                html += '<div class="item" data-user-id="' +
+                    all_user_list[user].id + '"><img src="' +
+                    all_user_list[user].headimgurl + '"> <p>' +
+                    all_user_list[user].nickname + '</p></div>';
+            }
+            $("#data").append(html);
+        }
+
+        /* 初始化表单 */
+        function init_form() {
+            user_first_info();
+            name_select();
+            range_checkbox();
+            begin_end_btn();
+        }
+
+        /*设置第一个用户的信息， 不然的话空空如也*/
+        function user_first_info() {
+            var $data = $("#data").children(".item").eq(0);
+            var $place = $("#leftContent");
+            var $item = $place.empty().append($data).children(".item");
+            $item.animateCss('fadeIn', function () {
+
+            })
+        }
+
+        /*设置奖项名称的定义*/
+        function name_select() {
+            var $select = $("#select-name-select");
+            var $self_def_name = $("#self-def-name").hide();
+            $select.change(function () {
+                if($(this).val() == $(this).children("option").eq(0).val()){
+                    $self_def_name.show();
+                }else{
+                    $self_def_name.hide();
+                }
+            });
+        }
+
+        /*初始化checkbox*/
+        function range_checkbox() {
+            var $prize_range_input_1 = $("#prize-range-input-1");
+            var $prize_range_input_2 = $("#prize-range-input-2");
+            $prize_range_input_1.attr("checked", false);
+            $prize_range_input_2.attr("checked", true);
+        }
+
+        /*设置开始和结束按钮*/
+        function begin_end_btn() {
+            var $begin = $("#begin").show();
+            var $end = $("#end").hide();
+            /*开始抽奖*/
+            $begin.click(function () {
+                /*判断是否设置正确*/
+                var result = check_form();
+                if(result == ""){
+                    return;
+                }else{
+                    $(this).hide();
+                    /* 在这里开始抽奖, 当获取中奖者信息时才可以停止抽奖 */
+                    begin_lottery(function () {
+                        init_params.isStop = false;
+                        $end.show();
+                    });
+                }
+            });
+            /*结束抽奖*/
+            $end.click(function () {
+                $(this).hide();
+                init_params.isStop = true;
+            });
+        }
+
+        /*检查表单*/
+        function check_form() {
+            var $select_name_select = $("#select-name-select");
+            var $self_def_name_input = $("#self-def-name-input");
+            var $number_input = $("#number-input");
+            var $prize_input = $("#prize-input");
+            var $prize_range_input_1 = $("#prize-range-input-1");
+            var $prize_range_input_2 = $("#prize-range-input-2");
+
+            var params = {
+                activityId: 0,
+                lotteryName: "",
+                peopleNum: 1,
+                prizeName: "",
+                lotteryRange: 2
+            };
+
+            /*奖项名称*/
+            if($select_name_select.val() == $select_name_select.children("option").eq(0).val()){
+                var lotteryName = $self_def_name_input.val();
+                if(lotteryName.length <= 0){
+                    alert("自定义名称不能为空");
+                    return "";
+                }else{
+                    params.lotteryName = lotteryName;
+                }
+            }else{
+                params.lotteryName = $select_name_select.val();
+            }
+
+            /*抽奖数量*/
+            var peopleNum = $number_input.val();
+            var reg = new RegExp("^[1-9][0-9]*$");
+            if(reg.test(peopleNum) && peopleNum <= init_params.peopleSum){
+                params.peopleNum = peopleNum;
+            }else{
+                alert("请输入合适且正确的抽奖数量（必须是正整数且不大于抽奖的人数）");
+                return "";
+            }
+
+            /*奖品*/
+            var prizeName = $prize_input.val();
+            if(prizeName.length > 0){
+                params.prizeName = prizeName;
+            }
+
+            /*抽奖范围*/
+            var lotteryRange = 2;
+            var prize_range_input_1 = $prize_range_input_1.attr("checked");
+            var prize_range_input_2 = $prize_range_input_2.attr("checked");
+            if(prize_range_input_1 == "checked"){
+                if(prize_range_input_2 == "checked"){
+                    lotteryRange = 3;
+                }else{
+                    lotteryRange = 2;
+                }
+            }else{
+                if(prize_range_input_2 == "checked"){
+                    lotteryRange = 1;
+                }else{
+                    lotteryRange = 0;
+                }
+            }
+            params.lotteryRange = lotteryRange;
+
+            return params;
+        }
+
+        /* 开始抽奖过程 */
+        function begin_lottery(callback) {
+            /* 获取中奖人员名单 */
+            var uid = [
+                {
+                    id: 5,
+                    nickname: "ALISURE5",
+                    headimgurl:"../img/user_head_img_5.png"
+                },
+                {
+                    id: 9,
+                    nickname: "ALISURE9",
+                    headimgurl:"../img/user_head_img_9.png"
+                },
+            ];
+
+            /* 显示结束抽奖按钮： 目的是在用户可以停止抽奖时，已经获取了获奖名单 */
+            callback();
+
+            /* 设置动画效果 */
+            /*所需数据*/
+            var $data = $("#data").children(".item");
+            /*动画位置*/
+            var $place = $("#leftContent");
+
+            show_user_info($data, $place, uid);
+        }
+
+        /* 在停止前展示用户的信息：
+         * 一直展示用户信息， 直到用户点击停止
+          * */
+        function show_user_info($data,$place,uid) {
+            /*选出数据，执行，在结束后触发 */
+            var html = $data.eq(parseInt(Math.random() * $data.size()));
+            show_one(html, $place, function () {
+                if (init_params.isStop) { /* 停止抽奖， 开始展示中奖用户的信息 */
+                    show_lottery($data,$place,uid);
+                }else{ /* 停止抽奖前，一直展示用户信息 */
+                    show_user_info($data, $place,uid);
+                }
+            });
+        }
+
+        /* 停止抽奖， 开始展示中奖用户的信息 */
+        function show_lottery($data,$place,uid) {
+            if(uid.length <= 0){
+                return true;
+            }
+            /* 展示出中奖名单之前先有一个动画效果：先展示几个没有中奖的用户 */
+            show_i_by_one($data,$place,5, function () {
+                /* 开始展示中奖的用户 */
+                var user = uid.pop();
+                var html = '<div class="item" data-user-id="' + user.id + '"><img src="' +
+                    user.headimgurl + '"> <p>' + user.nickname + '</p></div>';
+                /* 执行，在结束后触发 */
+                show_one(html,$place, function () {
+                    /* 此时产生一个中奖人的结果： 此时可以在右侧展示信息了。 */
+                    setTimeout(function () {
+                        show_lottery($data,$place,uid);
+                    },1000);
+                });
+            });
+        }
+
+        /* 展示i个用户的信息 */
+        function show_i_by_one($data,$place,i,callback) {
+            if(i == 0) {
+                callback();
+                return;
+            }
+            /* 执行，在结束后触发 */
+            var html = $data.eq(parseInt(Math.random() * $data.size()));
+            show_one(html,$place, function () {
+                show_i_by_one($data,$place,(function () {
+                    return i -= 1;
+                })(),callback);
+            });
+        }
+
+        /* 展示一个， 后续处理由callback()决定 */
+        function show_one(html,$place, callback) {
+            /*替换DOM*/
+            var $item = $place.empty().append(html).children(".item");
+            $item.animateCss('fadeOut',function () {
+                $item.animateCss('fadeIn',function () {
+                    callback();
+                });
+            });
+        }
+
+    });
+</script>
+<script>
+    $(function () {
+        /* 对某一次抽奖中的人进行删除 */
+        /* 删除该功能只需把下面的代码和(.lottery .right .items .delete)样式删除*/
+        $("#list .item").mouseenter(function () {
+            $(this).prepend('<div class="delete"></div>');
+            var $delete = $(this).children(".delete").eq(0);
+            $delete.on("click", function () {
+                $(this).parent().remove();
+                alert("delete");
+            });
+        });
+        $("#list .item").mouseleave(function () {
+            var $delete = $(this).children(".delete").eq(0);
+            $delete.remove();
+        });
+        /* 对某一次抽奖中的人进行删除 */
+    });
+</script>
+<script>
+    $(function () {
+        /*滚动条初始化*/
+        $(window).on("load",function(){
+            $("#list").mCustomScrollbar({theme:"dark-2", axis:"y", autoHideScrollbar:true});
+        });
+    });
+</script>
+
+</body>
+</html>
