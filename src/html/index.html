@@ -180,11 +180,6 @@
         background-color: #ea6519;
     }
     /*开始和结束按钮*/
-    /*动画时间设定： 覆盖animate.css*/
-    .animated {
-        animation-duration: 0.06s !important;
-    }
-    /*动画时间设定： 覆盖animate.css*/
     /* ----------------------------------------------------- */
 
 </style>
@@ -226,17 +221,40 @@
         margin-top: 20px;
     }
     .lottery .right .title .right-info{
-        width: 100px;
-        margin: 15px 5px 15px 5px;
+        margin: 15px 15px 15px 5px;
     }
     .lottery .right .title .right-info .operation{
-        width: 100px;
         height: 37px;
+    }
+    .lottery .right .title .right-info .operation>div{
+        float: right;
+        color: #ffffff;
+        font-size: 14px;
+        padding: 0 10px;
+        line-height: 32px;
+        margin-top: -1px;
+        border-radius: 4px;
+        background-color: #EA853C;
+        margin-left: 5px;
+        cursor: pointer;
+    }
+    .lottery .right .title .right-info .operation>div:hover{
+        background-color: #ea7125;
+    }
+    .lottery .right .title .right-info .operation>div:active{
+        background-color: #ea6519;
+    }
+    .lottery .right .title .send-info{
+
+    }
+    .lottery .right .title .look-detail{
+
     }
     .lottery .right .title .right-info .signed-number{
         font-size: 15px;
         color: #EA853C;
         margin-top: 15px;
+        float: right;
     }
 
     .lottery .right .list{
@@ -385,206 +403,36 @@
         </div>
         <!-- 右侧名单 -->
         <div class="right">
-            <div class="title">
-                <div class="logo">
-                    <img src="../img/user_head_img_3.png">
-                </div>
+            <div class="title" id="activity-info">
+                <div class="logo"></div>
                 <div class="activity-info">
-                    <div class="name">活动名称</div>
-                    <div class="time">2017年05月27日 15：39</div>
+                    <div class="name"></div>
+                    <div class="time"></div>
                 </div>
                 <div class="right-info">
-                    <div class="operation"></div>
+                    <div class="operation">
+                        <div id="look-detail" style="display: none" class="look-detail">查看详情</div>
+                        <div id="send-info" style="display: none" class="send-info">发送中奖信息</div>
+                    </div>
                     <div class="signed-number">已签到<span>999</span>人</div>
                 </div>
             </div>
-            <div class="list" id="list">
-
-                <div class="items">
-                    <div class="info">
-                        <div class="lotteryName">三等奖</div>
-                        <div class="prizeName">水杯</div>
-                        <div class="peopleNum">共<span>8</span>人获奖</div>
-                        <div class="reset">重新抽奖</div>
-                    </div>
-                    <div class="content">
-                        <div class="item">
-                            <img src="../img/user_head_img_1.png">
-                            <p>ALISURE</p>
-                        </div>
-                        <div class="item">
-                            <img src="../img/user_head_img_2.png">
-                            <p>ALISURE</p>
-                        </div>
-                        <div class="item">
-                            <img src="../img/user_head_img_3.png">
-                            <p>ALISURE</p>
-                        </div>
-                        <div class="item">
-                            <img src="../img/user_head_img_4.png">
-                            <p>ALISURE</p>
-                        </div>
-                        <div class="item">
-                            <img src="../img/user_head_img_1.png">
-                            <p>ALISURE</p>
-                        </div>
-                        <div class="item">
-                            <img src="../img/user_head_img_2.png">
-                            <p>ALISURE</p>
-                        </div>
-                        <div class="item">
-                            <img src="../img/user_head_img_3.png">
-                            <p>ALISURE</p>
-                        </div>
-                        <div class="item">
-                            <img src="../img/user_head_img_4.png">
-                            <p>ALISURE</p>
-                        </div>
-                        <div class="item">
-                            <img src="../img/user_head_img_1.png">
-                            <p>ALISURE</p>
-                        </div>
-                        <div class="item">
-                            <img src="../img/user_head_img_2.png">
-                            <p>ALISURE</p>
-                        </div>
-                        <div class="item">
-                            <img src="../img/user_head_img_3.png">
-                            <p>ALISURE</p>
-                        </div>
-                        <div class="item">
-                            <img src="../img/user_head_img_4.png">
-                            <p>ALISURE</p>
-                        </div>
-                        <div class="item">
-                            <img src="../img/user_head_img_1.png">
-                            <p>ALISURE</p>
-                        </div>
-                        <div class="item">
-                            <img src="../img/user_head_img_2.png">
-                            <p>ALISURE</p>
-                        </div>
-                        <div class="item">
-                            <img src="../img/user_head_img_3.png">
-                            <p>ALISURE</p>
-                        </div>
-                        <div class="item">
-                            <img src="../img/user_head_img_4.png">
-                            <p>ALISURE</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="items">
-                    <div class="info">
-                        <div class="lotteryName">三等奖</div>
-                        <div class="prizeName">水杯</div>
-                        <div class="peopleNum">共<span>8</span>人获奖</div>
-                        <div class="reset">重新抽奖</div>
-                    </div>
-                    <div class="content">
-                        <div class="item">
-                            <img src="../img/user_head_img_1.png">
-                            <p>ALISURE</p>
-                        </div>
-                        <div class="item">
-                            <img src="../img/user_head_img_2.png">
-                            <p>ALISURE</p>
-                        </div>
-                        <div class="item">
-                            <img src="../img/user_head_img_3.png">
-                            <p>ALISURE</p>
-                        </div>
-                        <div class="item">
-                            <img src="../img/user_head_img_4.png">
-                            <p>ALISURE</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="items">
-                    <div class="info">
-                        <div class="lotteryName">三等奖</div>
-                        <div class="prizeName">水杯</div>
-                        <div class="peopleNum">共<span>8</span>人获奖</div>
-                        <div class="reset">重新抽奖</div>
-                    </div>
-                    <div class="content">
-                        <div class="item">
-                            <img src="../img/user_head_img_1.png">
-                            <p>ALISURE</p>
-                        </div>
-                        <div class="item">
-                            <img src="../img/user_head_img_2.png">
-                            <p>ALISURE</p>
-                        </div>
-                        <div class="item">
-                            <img src="../img/user_head_img_3.png">
-                            <p>ALISURE</p>
-                        </div>
-                        <div class="item">
-                            <img src="../img/user_head_img_4.png">
-                            <p>ALISURE</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="items">
-                    <div class="info">
-                        <div class="lotteryName">三等奖</div>
-                        <div class="prizeName">水杯</div>
-                        <div class="peopleNum">共<span>8</span>人获奖</div>
-                        <div class="reset">重新抽奖</div>
-                    </div>
-                    <div class="content">
-                        <div class="item">
-                            <img src="../img/user_head_img_1.png">
-                            <p>ALISURE</p>
-                        </div>
-                        <div class="item">
-                            <img src="../img/user_head_img_2.png">
-                            <p>ALISURE</p>
-                        </div>
-                        <div class="item">
-                            <img src="../img/user_head_img_3.png">
-                            <p>ALISURE</p>
-                        </div>
-                        <div class="item">
-                            <img src="../img/user_head_img_4.png">
-                            <p>ALISURE</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="items">
-                    <div class="info">
-                        <div class="lotteryName">三等奖</div>
-                        <div class="prizeName">水杯</div>
-                        <div class="peopleNum">共<span>8</span>人获奖</div>
-                        <div class="reset">重新抽奖</div>
-                    </div>
-                    <div class="content">
-                        <div class="item">
-                            <img src="../img/user_head_img_1.png">
-                            <p>ALISURE</p>
-                        </div>
-                        <div class="item">
-                            <img src="../img/user_head_img_2.png">
-                            <p>ALISURE</p>
-                        </div>
-                        <div class="item">
-                            <img src="../img/user_head_img_3.png">
-                            <p>ALISURE</p>
-                        </div>
-                        <div class="item">
-                            <img src="../img/user_head_img_4.png">
-                            <p>ALISURE</p>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
+            <div class="list" id="list"></div>
         </div>
 
         <!-- 把所有的名单放到这里，需要显示哪个时就显示哪个！ -->
-        <div id="data" style="display: none"></div>
+        <div id="data" style="display: none;"></div>
+        <div id="data2" style="display: none;">
+            <div class="items">
+                <div class="info">
+                    <div class="lotteryName"></div>
+                    <div class="prizeName"></div>
+                    <div class="peopleNum">共<span></span>人获奖</div>
+                    <div class="reset" style="display: none">重新抽奖</div>
+                </div>
+                <div class="content"></div>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -594,26 +442,56 @@
 <script>
     /* jQuery插件 */
     $.fn.extend({
-        animateCss: function (animationName, callback) {
+        animateCss: function (animationName, time, callback) {
             var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
+            /*动画时间设定： 覆盖animate.css*/
+            this.css("animation-duration", time + "s");
+            /*动画时间设定： 覆盖animate.css*/
             this.addClass('animated ' + animationName).one(animationEnd, function() {
                 $(this).removeClass('animated ' + animationName);
-                callback();
+                $(this).css("animation-duration", "");
+                if(typeof callback != "undefined"){
+                    callback();
+                }
             });
+            return this;
         }
     });
     $(function () {
 
         var init_params = {
-            peopleSum: 22,
+            peopleSum: 1,
             isStop: false
         };
-
+        var activity_info = {
+            activityId: 123,
+            logo: "../img/user_head_img_3.png",
+            name: "测试活动",
+            time: "2017年05月27日 15：39",
+            signedNumber: 12
+        };
         /*初始化数据*/
         init_data();
 
         /*初始化表单*/
         init_form();
+
+        /*初始化发送中奖信息和查看详情*/
+        init_right_btn();
+
+        /*初始化发送中奖信息和查看详情*/
+        function init_right_btn() {
+            $("#look-detail").on("click", function () {
+                window.open("lottery-detail.html?id=" + activity_info.activityId);
+            });
+            $("#send-info").on("click", function () {
+                var text = '确定要给中奖者发送信息吗？中奖者会在微信中收到以下中奖信息：\n' +
+                    '\n您在参与的“' + activity_info.name + '”活动的抽奖中获得“（奖项名称）”，请在活动举办处领奖。';
+                if(confirm(text)){
+                    /* 发送中奖信息 */
+                }
+            });
+        }
 
         /*初始化数据*/
         function init_data() {
@@ -680,6 +558,10 @@
                 }
             ];
 
+            /* 设置参与抽奖的人数 */
+            init_params.peopleSum = all_user_list.length;
+
+            /* 准备抽奖的数据 */
             var html = "";
             for(var user in all_user_list){
                 html += '<div class="item" data-user-id="' +
@@ -688,24 +570,28 @@
                     all_user_list[user].nickname + '</p></div>';
             }
             $("#data").append(html);
+
+            /*设置活动信息*/
+            var $activity_info = $("#activity-info");
+            if(activity_info.logo.length > 0){
+                $activity_info.find(".logo").append('<img src="'+  activity_info.logo+'" alt="logo">').animateCss("bounceIn", 1);
+            }
+            $activity_info.find(".name").text(activity_info.name);
+            $activity_info.find(".time").text(activity_info.time);
+            $activity_info.find(".signed-number span").text(activity_info.signedNumber);
+
+            /*设置第一个用户的信息， 不然的话空空如也*/
+            var $data = $("#data").children(".item").eq(0);
+            var $place = $("#leftContent");
+            var $item = $place.empty().append($data).children(".item");
+            $item.animateCss('bounceIn', 1);
         }
 
         /* 初始化表单 */
         function init_form() {
-            user_first_info();
             name_select();
             range_checkbox();
             begin_end_btn();
-        }
-
-        /*设置第一个用户的信息， 不然的话空空如也*/
-        function user_first_info() {
-            var $data = $("#data").children(".item").eq(0);
-            var $place = $("#leftContent");
-            var $item = $place.empty().append($data).children(".item");
-            $item.animateCss('fadeIn', function () {
-
-            })
         }
 
         /*设置奖项名称的定义*/
@@ -731,7 +617,7 @@
 
         /*设置开始和结束按钮*/
         function begin_end_btn() {
-            var $begin = $("#begin").show();
+            var $begin = $("#begin").animateCss("bounceIn", 1);
             var $end = $("#end").hide();
             /*开始抽奖*/
             $begin.click(function () {
@@ -740,17 +626,22 @@
                 if(result == ""){
                     return;
                 }else{
+                    /* 在右边增加抽奖信息*/
+                    add_lottery_list_after_begin(result);
+                    /* 隐藏开始按钮 */
                     $(this).hide();
                     /* 在这里开始抽奖, 当获取中奖者信息时才可以停止抽奖 */
                     begin_lottery(function () {
                         init_params.isStop = false;
+                        /*显示结束按钮*/
                         $end.show();
                     });
                 }
             });
             /*结束抽奖*/
             $end.click(function () {
-                $(this).hide();
+                /*隐藏结束按钮， 此时开始按钮和结束按钮都隐藏了，需要在动画结束后显示开始按钮*/
+                $(this).animateCss("fadeOut", 2).hide();
                 init_params.isStop = true;
             });
         }
@@ -837,9 +728,29 @@
                     nickname: "ALISURE9",
                     headimgurl:"../img/user_head_img_9.png"
                 },
+                {
+                    id: 6,
+                    nickname: "ALISURE6",
+                    headimgurl:"../img/user_head_img_6.png"
+                },
+                {
+                    id: 3,
+                    nickname: "ALISURE3",
+                    headimgurl:"../img/user_head_img_3.png"
+                },
+                {
+                    id: 11,
+                    nickname: "ALISURE11",
+                    headimgurl:"../img/user_head_img_11.png"
+                },
+                {
+                    id: 1,
+                    nickname: "ALISURE1",
+                    headimgurl:"../img/user_head_img_1.png"
+                },
             ];
 
-            /* 显示结束抽奖按钮： 目的是在用户可以停止抽奖时，已经获取了获奖名单 */
+            /* 显示停止抽奖按钮： 目的是在用户可以停止抽奖时，已经获取了获奖名单 */
             callback();
 
             /* 设置动画效果 */
@@ -851,9 +762,24 @@
             show_user_info($data, $place, uid);
         }
 
-        /* 在停止前展示用户的信息：
-         * 一直展示用户信息， 直到用户点击停止
-          * */
+        /* 当开始抽奖后， 在右边增加一次抽奖信息 */
+        function add_lottery_list_after_begin(form_data) {
+            var $data2 = $("#data2");
+            $data2.find(".lotteryName").text(
+                form_data.lotteryName.length > 10 ? form_data.lotteryName.substr(0, 10) + "..." : form_data.lotteryName);
+            $data2.find(".prizeName").text(
+                form_data.prizeName.length > 10 ? form_data.prizeName.substr(0, 10) + "..." : form_data.prizeName);
+            $data2.find(".peopleNum span").text(form_data.peopleNum);
+            /* 本来应该是#list,但是加了滚动条，所以就变成了#mCSB_1_container */
+            $("#mCSB_1_container").append($data2.html()).find(".items").last().animateCss("fadeIn", 1);
+
+            /* 设置重新抽奖 */
+            $("#list .items .reset").last().on("click", function () {
+                reset_lottery($(this).parent().parent());
+            });
+        }
+
+        /* 在停止前展示用户的信息：一直展示用户信息， 直到用户点击停止 */
         function show_user_info($data,$place,uid) {
             /*选出数据，执行，在结束后触发 */
             var html = $data.eq(parseInt(Math.random() * $data.size()));
@@ -868,21 +794,25 @@
 
         /* 停止抽奖， 开始展示中奖用户的信息 */
         function show_lottery($data,$place,uid) {
-            if(uid.length <= 0){
-                return true;
-            }
-            /* 展示出中奖名单之前先有一个动画效果：先展示几个没有中奖的用户 */
-            show_i_by_one($data,$place,5, function () {
-                /* 开始展示中奖的用户 */
-                var user = uid.pop();
-                var html = '<div class="item" data-user-id="' + user.id + '"><img src="' +
-                    user.headimgurl + '"> <p>' + user.nickname + '</p></div>';
-                /* 执行，在结束后触发 */
-                show_one(html,$place, function () {
-                    /* 此时产生一个中奖人的结果： 此时可以在右侧展示信息了。 */
-                    setTimeout(function () {
-                        show_lottery($data,$place,uid);
-                    },1000);
+            /* 开始展示中奖的用户 */
+            var user = uid.pop();
+            var html = '<div class="item" data-user-id="' + user.id + '"><img src="' +
+                user.headimgurl + '"><p>' + user.nickname + '</p></div>';
+            /* 执行，在结束后触发 */
+            show_one(html,$place, function () {
+                /* 此时产生一个中奖人的结果： 此时可以在右侧展示信息了。 */
+                $("#list .items .content").last().append(html).find(".item").last().animateCss("bounceIn", 0.5, function () {
+                    /* 抽奖结束 */
+                    if(uid.length <= 0){
+                        /* 此时抽奖已经结束， 可以做一些善后 */
+                        end_lottery($data);
+                        return true;
+                    }else{
+                        /* 展示下一个中奖名单之前先有一个动画效果：先展示几个没有中奖的用户 */
+                        show_i_by_one($data,$place,4, function () {
+                            show_lottery($data,$place,uid);
+                        });
+                    }
                 });
             });
         }
@@ -906,38 +836,78 @@
         function show_one(html,$place, callback) {
             /*替换DOM*/
             var $item = $place.empty().append(html).children(".item");
-            $item.animateCss('fadeOut',function () {
-                $item.animateCss('fadeIn',function () {
+            $item.animateCss('fadeOut', 0.08, function () {
+                $item.animateCss('fadeIn', 0.08, function () {
                     callback();
                 });
             });
         }
 
-    });
-</script>
-<script>
-    $(function () {
-        /* 对某一次抽奖中的人进行删除 */
-        /* 删除该功能只需把下面的代码和(.lottery .right .items .delete)样式删除*/
-        $("#list .item").mouseenter(function () {
-            $(this).prepend('<div class="delete"></div>');
-            var $delete = $(this).children(".delete").eq(0);
-            $delete.on("click", function () {
-                $(this).parent().remove();
-                alert("delete");
+        /* 抽奖结束的善后*/
+        function end_lottery($data) {
+            /* 显示开始抽奖按钮 */
+            $("#begin").show().animateCss("bounceIn", 1);
+            /* 显示重新抽奖按钮 */
+            $("#list .items .reset").last().show().animateCss("bounceIn", 1);
+
+            /* 若是没有抽奖就显示下面这两个按钮 */
+            if($("#list .items").length == 1) {
+                /* 显示查看详情和发送中奖信息*/
+                $("#send-info").show().animateCss("bounceIn", 1);
+                $("#look-detail").show().animateCss("bounceIn", 1);
+            }
+
+            /* 重新填写抽奖数量 */
+            $("#number-input").val("");
+
+            /* 不知道什么原因， data中的数据没了，不想找原因了 */
+            $("#data").append($data);
+
+            /* 对某一次抽奖中的人进行删除 */
+            /* 删除该功能只需把下面的代码和(.lottery .right .items .delete)样式删除*/
+            $("#list .item").off("mouseenter").on("mouseenter", function () {
+                $(this).prepend('<div class="delete"></div>');
+                var $delete = $(this).find(".delete").eq(0);
+                $delete.on("click", function () {
+                    var $item = $(this).parent();
+
+                    if(confirm('确定要移除昵称为"' + $item.find("p").text() + '"的获奖者吗？')){
+                        var $peopleNum = $item.parent().parent().find(".peopleNum span").eq(0);
+
+                        /* 在这里连接服务器删除获奖者信息 */
+                        (function(){
+                            $item.remove();
+                            /* 当返回成功后把获奖者数量-1 */
+                            $peopleNum.text(parseInt($peopleNum.text()) - 1);
+                        })();
+                        /* 在这里连接服务器删除获奖者信息 */
+                    }
+                });
             });
-        });
-        $("#list .item").mouseleave(function () {
-            var $delete = $(this).children(".delete").eq(0);
-            $delete.remove();
-        });
-        /* 对某一次抽奖中的人进行删除 */
+            $("#list .item").off("mouseleave").on("mouseleave", function () {
+                var $delete = $(this).children(".delete").eq(0);
+                $delete.remove();
+            });
+            /* 对某一次抽奖中的人进行删除 */
+        }
+
+        /* 设置重新抽奖 */
+        function reset_lottery($items) {
+            $items.remove();
+            /* 若是没有抽奖就隐藏下面这两个按钮 */
+            if($("#list .items").length == 0){
+                /* 显示查看详情和发送中奖信息*/
+                $("#send-info").fadeOut();
+                $("#look-detail").fadeOut();
+            }
+        }
     });
 </script>
 <script>
     $(function () {
         /*滚动条初始化*/
         $(window).on("load",function(){
+            /* 注意：在add_lottery_list_after_begin()中用到了该信息 */
             $("#list").mCustomScrollbar({theme:"dark-2", axis:"y", autoHideScrollbar:true});
         });
     });

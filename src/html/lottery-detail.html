@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>抽奖详情</title>
+</head>
+<body>
+
+<style>
+    body{
+        margin: 0;
+    }
+    p{
+        margin: 0;
+    }
+
+    .lottery-detail{
+        min-width: 1080px;
+        padding: 55px 0px;
+    }
+    .lottery-detail>div{
+        margin: auto 10%;
+        overflow: hidden;
+    }
+
+    .lottery-detail .lottery-title .activityTitle{
+        float: left;
+        line-height: 42px;
+        text-align: center;
+        font-size: 23px;
+    }
+    .lottery-detail .lottery-title .btn{
+        float: right;
+        font-size: 16px;
+        background-color: #ffa060;
+        color: #fff;
+        outline: none;
+        padding: 6px 12px;
+        margin-top: 2px;
+        line-height: 1.42857143;
+        text-align: center;
+        vertical-align: middle;
+        cursor: pointer;
+        user-select: none;
+        border: 1px solid transparent;
+        border-radius: 4px;
+        text-decoration: none;
+    }
+    .lottery-detail .lottery-title .btn:hover{
+        background-color: #ea853c;
+    }
+    .lottery-detail .lottery-title .btn:active{
+        background-color: #ea6519;
+    }
+    .lottery-detail .lottery-title .btn:last-child{
+        margin-right: 10px;
+    }
+
+    .lottery-detail .lottery-wrapper .info{
+        overflow: hidden;
+        background-color: #eee;
+        padding: 10px;
+        margin: 10px auto 0;
+        border-top: 1px solid #ddd;
+    }
+    .lottery-detail .lottery-wrapper .info>div{
+         float: left;
+     }
+    .lottery-detail .lottery-wrapper .info .lotteryName{
+        color: #EA853C;
+        font-size: 20px;
+        margin: auto 10px auto 5px;
+    }
+    .lottery-detail .lottery-wrapper .info .prizeName,
+    .lottery-detail .lottery-wrapper .info .time,
+    .lottery-detail .lottery-wrapper .info .peopleNum{
+        color: #999999;
+        margin: 3px 10px 0;
+    }
+    .lottery-detail .lottery-wrapper .info .time{
+        font-size: 16px;
+        float: right;
+    }
+
+    .lottery-detail .lottery-wrapper table{
+        width: 100%;
+        max-width: 100%;
+        text-align: center;
+        border-spacing: 0;
+        border-collapse: collapse;
+    }
+    .lottery-detail .lottery-wrapper table th,
+    .lottery-detail .lottery-wrapper table td{
+        background-color: #fafafa;
+        border-bottom: 1px solid #ddd;
+        border-top: 1px solid #ddd;
+        line-height: 1.42857143;
+        vertical-align: top;
+        text-align: center;
+        white-space: nowrap;
+        padding: 11px 8px;
+        font-size: 14px;
+    }
+    .lottery-detail .lottery-wrapper table tr.current td,
+    .lottery-detail .lottery-wrapper table tr.current th{
+        background-color: #f5f5f5;
+    }
+</style>
+
+    <div id="lottery-detail" class="lottery-detail">
+        <div class="lottery-title">
+            <p id="activityName" class="activityTitle"></p>
+            <a class="btn" id="delete" href="#">删除抽奖</a>
+            <a class="btn" id="download" href="#">下载抽奖结果</a>
+        </div>
+        <div id="lottery-content" class="lottery-wrapper"></div>
+    </div>
+
+<script src="../js/jquery-1.11.3.min.js"></script>
+<script>
+    $(function () {
+
+        var activity_info = {
+            activityId: 123,
+            logo: "../img/user_head_img_3.png",
+            name: "测试活动",
+            time: "2017年05月27日 15：39",
+            signedNumber: 12
+        };
+        var lotteryUserLists = [
+            {
+                lottery: {
+                    id: 0,
+                    lotteryName: "一等奖",
+                    prizeName: "手机",
+                    ctime: "2017-06-06 10:57:30",
+                    peopleNum: 2
+                },
+                infoName:["姓名", "学号", "学校"],
+                userList: [
+                    { infoValue: ["ALISURE","12345678","哪"] },
+                    { infoValue: ["ALISURE2","1234567","哪个"] }
+                ]
+            },
+            {
+                lottery: {
+                    id: 0,
+                    lotteryName: "二等奖",
+                    prizeName: "还是手机",
+                    ctime: "2017-06-06 10:45:30",
+                    peopleNum: 3
+                },
+                infoName:["姓名", "学号", "学校"],
+                userList: [
+                    { infoValue: ["ALISURE","12345678","哪"] },
+                    { infoValue: ["ALISURE2","1234567","哪个"] },
+                    { infoValue: ["ALISURE3","123456","哪个学"] }
+                ]
+            },
+            {
+                lottery: {
+                    id: 0,
+                    lotteryName: "三等奖",
+                    prizeName: "也是手机",
+                    ctime: "2017-06-06 10:33:30",
+                    peopleNum: 5
+                },
+                infoName:["姓名", "学号", "学校"],
+                userList: [
+                    { infoValue: ["ALISURE","12345678","哪"] },
+                    { infoValue: ["ALISURE2","1234567","哪个"] },
+                    { infoValue: ["ALISURE3","123456","哪个学"] },
+                    { infoValue: ["ALISURE4","12347","哪个学校"] },
+                    { infoValue: ["ALISURE5","14567","哪个学校呢"] }
+                ]
+            }
+        ];
+
+        /*初始化信息*/
+        init_info();
+
+        /*展示中奖信息*/
+        init_data();
+
+        function init_info() {
+            $("#activityName").text(activity_info.name);
+
+            /*删除*/
+            $("#delete").click(function () {
+                if(confirm("确定要删除吗？")){
+
+                }
+            });
+
+            /*下载*/
+            $("#download").click(function () {
+                alert("下载");
+            });
+        }
+
+        function init_data() {
+
+            for (var lotteryIndex in lotteryUserLists){
+                var lotteryInfo = lotteryUserLists[lotteryIndex];
+                var userList = lotteryInfo.userList;
+
+                var title = '<div class="info">' +
+                                '<div class="lotteryName">' + lotteryInfo.lottery.lotteryName +
+                                '</div><div class="prizeName">' + lotteryInfo.lottery.prizeName +
+                                '</div><div class="peopleNum">共<span>' + lotteryInfo.lottery.peopleNum +
+                                '</span>人获奖</div><div class="time">' + lotteryInfo.lottery.ctime +
+                                '</div>' +
+                            '</div>';
+
+                /*表头*/
+                var thead = '<thead><tr>';
+                for (var infoIndex in lotteryInfo.infoName){
+                    thead += '<th>' + lotteryInfo.infoName[infoIndex] + '</th>';
+                }
+                thead += '<th>奖项名称</th><th>奖品</th>';
+                thead += '</tr></thead>';
+
+                /*用户信息*/
+                var tbody = '<tbody>';
+                for (var userIndex in userList){
+                    tbody += '<tr>';
+                    for (var valueIndex in userList[userIndex].infoValue){
+                        tbody += '<td>' + userList[userIndex].infoValue[valueIndex] + '</td>';
+                    }
+                    tbody += '<td>' + lotteryInfo.lottery.lotteryName + '</td>';
+                    tbody += '<td>' + lotteryInfo.lottery.prizeName + '</td>';
+                    tbody += '</tr>';
+                }
+                tbody += '</tbody>';
+
+                var html = '<div class="lottery-item">' + title + '<table>' + thead + tbody +  '</table></div>';
+
+                $("#lottery-content").append(html);
+            }
+        }
+
+        /*设置鼠标滑过效果*/
+        $("table tr").hover(function () {
+            $(this).addClass("current");
+        }, function () {
+            $(this).removeClass("current");
+        });
+    });
+</script>
+
+</body>
+</html>
